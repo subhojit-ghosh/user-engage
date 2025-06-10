@@ -1,4 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { EventDto } from './dto';
 import { KafkaService } from './kafka.service';
 
 @Controller()
@@ -7,7 +8,7 @@ export class AppController {
 
   @HttpCode(HttpStatus.OK)
   @Post('events')
-  async events(@Body() body: any) {
+  async events(@Body() body: EventDto) {
     await this.kafkaService.sendMessage('events.raw', body);
     return 'OK';
   }

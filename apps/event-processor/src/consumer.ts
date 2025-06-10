@@ -2,7 +2,7 @@ import { Kafka } from 'kafkajs';
 
 const kafka = new Kafka({
   clientId: 'event-processor',
-  brokers: ['localhost:9092'],
+  brokers: [],
 });
 
 const consumer = kafka.consumer({ groupId: 'event-processor-group' });
