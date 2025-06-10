@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { runConsumer } from './consumer';
 
 runConsumer().catch((err) => {

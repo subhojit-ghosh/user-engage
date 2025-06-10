@@ -5,7 +5,7 @@ import {
   OnModuleInit,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Kafka, logLevel, Producer } from 'kafkajs';
+import { Kafka, Producer } from 'kafkajs';
 
 @Injectable()
 export class KafkaService implements OnModuleInit, OnModuleDestroy {
@@ -21,7 +21,6 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
     this.kafka = new Kafka({
       clientId: 'ingest-api',
       brokers: [broker],
-      logLevel: logLevel.DEBUG,
     });
 
     this.producer = this.kafka.producer();
