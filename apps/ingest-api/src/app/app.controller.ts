@@ -8,7 +8,7 @@ export class AppController {
   @HttpCode(HttpStatus.OK)
   @Post('events')
   async events(@Body() body: any) {
-    await this.kafkaService.sendMessage('ingest-events', body);
+    await this.kafkaService.sendMessage('events.raw', body);
     return 'OK';
   }
 }
