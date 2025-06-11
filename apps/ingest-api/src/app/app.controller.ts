@@ -1,12 +1,21 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { format } from 'date-fns';
 import { EventDto } from './dto';
 import { KafkaService } from './kafka.service';
+import { SourceGuard } from './source.guard';
 
 @Controller()
 export class AppController {
   constructor(private readonly kafkaService: KafkaService) {}
 
+  @UseGuards(SourceGuard)
   @HttpCode(HttpStatus.OK)
   @Post('events')
   async events(@Body() body: EventDto) {
